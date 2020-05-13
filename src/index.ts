@@ -304,5 +304,11 @@ export const register = (options: IOptions): Kollektor | void => {
         });
         return;
     }
+    if (options.scrollDistances) {
+        if (options.scrollDistances.filter(d => d > 100 || d < 0).length) {
+            console.warn("Scroll distances can be only between 0 and 100");
+            return;
+        }
+    }
     return Kollektor.getInstance(options);
 }
