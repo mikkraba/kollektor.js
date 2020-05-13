@@ -1,2 +1,2 @@
 # kollektor.js
-Lightweight library to collect customer behavioural data
+Lightweight library to collect user event data
