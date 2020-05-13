@@ -512,7 +512,7 @@ var Kollektor = (function () {
                     "consumer": cb.name,
                     "providedData": data
                 });
-                cb.function(tracker.eventType, data);
+                cb.handler(tracker.eventType, data);
             }
         });
     };
@@ -539,12 +539,18 @@ exports.register = function (options) {
         console.warn("Kollektor: cannot be registered without any callbacks or plugins");
         return;
     }
-    var badConsumers = options.consumers.filter(function (c) { return !c.name || !c.map || !c.events || !c.function; });
+    var badConsumers = options.consumers.filter(function (c) { return !c.name || !c.map || !c.events || !c.handler; });
     if (badConsumers.length != 0) {
         console.warn("Kollektor: all consumers must have a name, map, events and function defined", {
             "badConsumers": badConsumers
         });
         return;
+    }
+    if (options.scrollDistances) {
+        if (options.scrollDistances.filter(function (d) { return d > 100 || d < 0; }).length) {
+            console.warn("Scroll distances can be only between 0 and 100");
+            return;
+        }
     }
     return Kollektor.getInstance(options);
 };

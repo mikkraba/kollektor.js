@@ -12,11 +12,6 @@
     <script>
     var demoKollektor = _kollektor.register({
     isDebug: true,
-    privacy: {
-        masking: true,
-        limit: 3,
-        excludedSelectors: []
-    },
     consumers: [
             {
                 name: "Demo consumer",
@@ -24,13 +19,12 @@
                 'event_category': 'collectedProperties.action',
                 'event_label': 'collectedProperties.label',
                 },
-                function: (event, data) => {
+                handler: (event, data) => {
                     console.log("Demo consumer callback");
                 },
                 events: "all"
             }
-        ],
-        scrollDistances: [50]
+        ]
     });
     demoKollektor.track();
     </script>

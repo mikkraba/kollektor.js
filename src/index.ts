@@ -255,7 +255,7 @@ export class Kollektor {
                     "consumer": cb.name,
                     "providedData": data
                 }); // debug
-                cb.function(tracker.eventType, data);
+                cb.handler(tracker.eventType, data);
             }
         });
     }
@@ -296,7 +296,7 @@ export const register = (options: IOptions): Kollektor | void => {
         console.warn("Kollektor: cannot be registered without any callbacks or plugins");
         return;
     }
-    const badConsumers: ITrackerCallback[] = options.consumers.filter(c => !c.name || !c.map || !c.events || !c.function);
+    const badConsumers: ITrackerCallback[] = options.consumers.filter(c => !c.name || !c.map || !c.events || !c.handler);
     if (badConsumers.length != 0) {
         console.warn(
             "Kollektor: all consumers must have a name, map, events and function defined",{
