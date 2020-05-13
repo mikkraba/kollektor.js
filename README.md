@@ -79,6 +79,50 @@ debounce: {
 - **consumers** `Array` required
 Consumers are callbacks where to forward the data. A consumer contains `name`, `handler`, `map` and `events`
 Example above demonstrates usage.
+Possible values sample:
+```
+{
+    collectedProperties: {
+        action: "link-click",                       // [target]-[event.type]
+        container: {
+            all: "form[register]:main",
+            highest: "main",
+            lowest: "form[registrationForm]"        // container[containerName], form had id "registrationForm"
+        },
+        identificator: "test-id-of-link",
+        isLink: true,
+        isOutbound: false,
+        label: "Some link",
+        type: "link"                                // target defined type
+    },
+    nativeProperties: {
+        attributes: [],
+        classes: [],
+        href: "/page",
+        id: "test-id-of-link"
+        role: "",
+        style: "",
+        type: ""
+    },
+    matchedTarget: {
+        name: "link",
+        selector: "a",
+        events: ["click"]
+    },
+    matchedContainers: [
+        {
+            name: "form",
+            selector: "form"
+        },
+        {
+            name: "main",
+            selector: "body"
+        }
+    ],
+    eventType: "click",
+    element: HTMLElement
+}
+```
 - **scrollDistances** `Array` (optional) - values between 0-100.
 
 
