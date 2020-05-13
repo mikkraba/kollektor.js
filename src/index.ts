@@ -271,7 +271,7 @@ export class Kollektor {
         const data: {[key: string]: any} = {};
         Object.entries(cbObject).forEach( ([k, v]) => {
             const val = v.split('.').reduce((a: object, b: keyof object) => a[b], tracker) || "";
-            data[k] = this.privacyManager.maskNumbersLongerThanLimit(val);
+            data[k] = typeof(val) == "string" ? this.privacyManager.maskNumbersLongerThanLimit(val) : val;
         });
         return data;
     }
