@@ -523,7 +523,7 @@ var Kollektor = (function () {
         Object.entries(cbObject).forEach(function (_a) {
             var _b = tslib_1.__read(_a, 2), k = _b[0], v = _b[1];
             var val = v.split('.').reduce(function (a, b) { return a[b]; }, tracker) || "";
-            data[k] = _this.privacyManager.maskNumbersLongerThanLimit(val);
+            data[k] = typeof (val) == "string" ? _this.privacyManager.maskNumbersLongerThanLimit(val) : val;
         });
         return data;
     };
