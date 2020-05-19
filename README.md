@@ -13,14 +13,26 @@ var demoKollektor = _kollektor.register({
         {
             name: "Demo consumer",
             map: {
-            'event_category': 'collectedProperties.action',
-            'event_label': 'collectedProperties.label',
+                event_category: 'collectedProperties.action',
+                event_label: 'collectedProperties.label',
             },
             handler: (eventName, data) => {
                 console.log("Demo consumer callback");
                 console.log(data);
             },
             events: "all"
+        },
+        {
+          name: "Google Analytics",
+          map: {
+            event_category: 'collectedProperties.action',
+            event_label: 'collectedProperties.label'
+          },
+          handler: (eventName, data) => {
+            // Site has Google Analytics global site tag (gtag.js)
+            gtag('event', eventName, data);
+          },
+          events: "all"
         }
     ]
 });
