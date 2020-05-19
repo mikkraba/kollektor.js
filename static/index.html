@@ -12,27 +12,34 @@
     <script>
     var demoKollektor = _kollektor.register({
     isDebug: true,
+    privacy: {
+      masking: true,
+      limit: 5,
+      excludedSelectors: []
+    },
     consumers: [
-            {
-                name: "Demo consumer",
-                map: {
-                'event_category': 'collectedProperties.action',
-                'event_label': 'collectedProperties.label',
-                },
-                handler: (event, data) => {
-                    console.log("Demo consumer callback");
-                },
-                events: "all"
-            }
-        ]
+        {
+            name: "Demo consumer",
+            map: {
+            'event_category': 'collectedProperties.action',
+            'event_label': 'collectedProperties.label',
+            'id': 'collectedProperties.identifier'
+            },
+            handler: function(eventName, data) {
+                console.log("Demo consumer callback");
+            },
+            events: "all"
+        }
+      ]
     });
     demoKollektor.track();
     </script>
 </head>
 
 <body id="body-id">
-    <a id="test-regular-link" href="#test1">Test text link</a>
+    <a id="test-regular-link-123456" href="#test1">Test text link</a>
     <button id="test-button" onclick="console.log(this);">Test button</button>
+    <button id="this-will-be-masked-123456" onclick="console.log(this);">id will be masked</button>
     <ul>
       <li class="menu-item">
         <a href="#">li menu item</a>

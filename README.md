@@ -16,7 +16,7 @@ var demoKollektor = _kollektor.register({
             'event_category': 'collectedProperties.action',
             'event_label': 'collectedProperties.label',
             },
-            handler: (event, data) => {
+            handler: (eventName, data) => {
                 console.log("Demo consumer callback");
                 console.log(data);
             },
@@ -89,7 +89,7 @@ Possible values sample:
             highest: "main",
             lowest: "form[registrationForm]"        // container[containerName], form had id "registrationForm"
         },
-        identificator: "test-id-of-link",
+        identifier: "test-id-of-link",
         isLink: true,
         isOutbound: false,
         label: "Some link",

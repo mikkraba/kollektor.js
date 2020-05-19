@@ -3,7 +3,7 @@ import { IContainerData } from './IContainerData';
 
 export interface IInteractionData extends IBaseData {
     type: string;
-    identificator: string;
+    identifier: string;
     container: IContainerData;
     isOutbound: boolean;
     isLink: boolean;

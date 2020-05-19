@@ -71,7 +71,7 @@ export class InteractionTracker extends BaseTracker {
         return {
             type: this.matchedTarget.name,
             label: this.getLabel(element),
-            identificator: this.getIdentificator(element),
+            identifier: this.getIdentificator(element),
             action: `${this.matchedTarget.name}-${this.eventType}`,
             container: this.getContainerObject(),
             isLink: this.isLink(),
