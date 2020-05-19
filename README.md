@@ -77,7 +77,7 @@ debounce: {
   - **container** `Object` required: `name`, `selector`, optional: `nameAttribute`, `condition`
   nameAttribute expects a `String`, condition a function that takes HTMLElement as input and returns boolean
 - **consumers** `Array` required
-Consumers are callbacks where to forward the data. A consumer contains `name`, `handler`, `map` and `events`
+Consumers are callbacks where to forward the data. A consumer contains `name`, `handler`, `map` and `events`. For creation of `map` provide an object where property values point to available values. E.g `collectedProperties.action`.
 Example above demonstrates usage.
 Possible values sample:
 ```
@@ -123,7 +123,8 @@ Possible values sample:
     element: HTMLElement
 }
 ```
-- **scrollDistances** `Array` (optional) - values between 0-100.
+- **scrollDistances** `Array` (optional) - values between 1-100.
+Scroll provides only `collectedProperties.action`, `collectedProperties.action` and `eventType`.
 
 
 
