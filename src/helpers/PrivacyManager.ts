@@ -15,6 +15,9 @@ export class PrivacyManager {
      * @param value 
      */
     public maskNumbersLongerThanLimit(value: string): string {
+        if (!this.settings.masking) {
+            return value;
+        }
         const regex = new RegExp("[0-9]{" + this.settings.limit + ",}", "g");
         return value.replace(regex, function(match) {
             return Array(match.length + 1).join('n');
