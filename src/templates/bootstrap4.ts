@@ -4,7 +4,7 @@ export const bootstrap4Template: IConfiguration = {
     template: "bootstrap4",
     isDebug: false,
     privacy: {
-        masking: true,
+        masking: false,
         limit: 5,
         excludedSelectors: []
     },

@@ -2,11 +2,11 @@ import { IConfiguration } from '../interfaces/IConfiguration';
 
 export const defaultTemplate: IConfiguration = {
     template: "default",
-    isDebug: true,
+    isDebug: false,
     privacy: {
-        masking: true,
+        masking: false,
         limit: 5,
-        excludedSelectors: ['input[type="tel"]']
+        excludedSelectors: []
     },
     debounce: [
         {
@@ -115,6 +115,6 @@ export const defaultTemplate: IConfiguration = {
             selector: "form"
         }
     ],
-    scrollDistances: [25, 50],
+    scrollDistances: [],
     consumers: []
   };
