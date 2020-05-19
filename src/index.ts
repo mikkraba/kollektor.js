@@ -13,6 +13,7 @@ import { ITracker } from './interfaces/ITracker';
 import { ITarget } from './interfaces/ITarget';
 import { PrivacyManager } from './helpers/PrivacyManager';
 import { ITrackerCallback } from './interfaces/ITrackerCallback';
+import './polyfills/polyfills.all.js';
 
 export class Kollektor {
     private static instance: Kollektor;
