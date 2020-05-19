@@ -132,6 +132,7 @@ declare module 'kollektor.js/helpers/Utilities' {
 declare module 'kollektor.js/index' {
     import { IConfiguration } from 'kollektor.js/interfaces/IConfiguration';
     import { IOptions } from 'kollektor.js/interfaces/IOptions';
+    import './polyfills/polyfills.all.js';
     export class Kollektor {
         static getInstance(options?: IOptions): Kollektor | void;
         static getTemplate(template?: string): IConfiguration;
@@ -196,7 +197,7 @@ declare module 'kollektor.js/interfaces/IInteractionData' {
     import { IContainerData } from 'kollektor.js/interfaces/IContainerData';
     export interface IInteractionData extends IBaseData {
         type: string;
-        identificator: string;
+        identifier: string;
         container: IContainerData;
         isOutbound: boolean;
         isLink: boolean;

@@ -345,6 +345,7 @@ var Utilities_1 = __webpack_require__(9);
 var ConfigurationTemplates_1 = __webpack_require__(4);
 var ScrollTracker_1 = __webpack_require__(10);
 var PrivacyManager_1 = __webpack_require__(11);
+__webpack_require__(12);
 var Kollektor = (function () {
     function Kollektor(options) {
         this.options = options;
@@ -581,11 +582,11 @@ exports.BaseTracker = BaseTracker;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.defaultTemplate = {
     template: "default",
-    isDebug: true,
+    isDebug: false,
     privacy: {
-        masking: true,
+        masking: false,
         limit: 5,
-        excludedSelectors: ['input[type="tel"]']
+        excludedSelectors: []
     },
     debounce: [
         {
@@ -694,7 +695,7 @@ exports.defaultTemplate = {
             selector: "form"
         }
     ],
-    scrollDistances: [25, 50],
+    scrollDistances: [],
     consumers: []
 };
 
@@ -770,7 +771,7 @@ var InteractionTracker = (function (_super) {
         return {
             type: this.matchedTarget.name,
             label: this.getLabel(element),
-            identificator: this.getIdentificator(element),
+            identifier: this.getIdentificator(element),
             action: this.matchedTarget.name + "-" + this.eventType,
             container: this.getContainerObject(),
             isLink: this.isLink(),
@@ -875,7 +876,7 @@ exports.bootstrap4Template = {
     template: "bootstrap4",
     isDebug: false,
     privacy: {
-        masking: true,
+        masking: false,
         limit: 5,
         excludedSelectors: []
     },
@@ -1208,6 +1209,9 @@ var PrivacyManager = (function () {
         this.settings = settings;
     }
     PrivacyManager.prototype.maskNumbersLongerThanLimit = function (value) {
+        if (!this.settings.masking) {
+            return value;
+        }
         var regex = new RegExp("[0-9]{" + this.settings.limit + ",}", "g");
         return value.replace(regex, function (match) {
             return Array(match.length + 1).join('n');
@@ -1225,6 +1229,90 @@ var PrivacyManager = (function () {
 }());
 exports.PrivacyManager = PrivacyManager;
 
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _array_prototype_find__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(13);
+/* harmony import */ var _array_prototype_find__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_array_prototype_find__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _element_matches__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(14);
+/* harmony import */ var _element_matches__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_element_matches__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _object_entries__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(15);
+/* harmony import */ var _object_entries__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_object_entries__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+/**
+ * IE Array.find()
+ * By Carlos Abdalla
+ * https://github.com/abdalla/ie-array-find-polyfill/blob/master/index.js
+ */
+if (!Array.prototype.find) {
+    Object.defineProperty(Array.prototype, 'find', {
+        value: function (predicate) {
+
+            if (this == null) {
+                throw new TypeError('this is null or not defined');
+            }
+
+            var obj = Object(this);
+            var len = obj.length >>> 0;
+
+            if (typeof predicate !== 'function') {
+                throw new TypeError('predicate must be a function');
+            }
+
+            var thisArg = arguments[1];
+
+            var index = 0;
+
+            while (index < len) {
+                var iValue = obj[index];
+                if (predicate.call(thisArg, iValue, index, obj)) {
+                    return iValue;
+                }
+                index++;
+            }
+
+            return undefined;
+        }
+    });
+}
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+// From https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector || 
+                                Element.prototype.webkitMatchesSelector;
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+if (!Object.entries) {
+    Object.entries = function( obj ){
+      var ownProps = Object.keys( obj ),
+          i = ownProps.length,
+          resArray = new Array(i); // preallocate the Array
+      while (i--)
+        resArray[i] = [ownProps[i], obj[ownProps[i]]];
+      
+      return resArray;
+    };
+  }
 
 /***/ })
 /******/ ]);

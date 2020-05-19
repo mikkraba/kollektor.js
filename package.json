@@ -1,7 +1,7 @@
 {
   "name": "kollektor-js",
-  "version": "0.0.1",
-  "description": "Lightweight library to collect customer behavioural data",
+  "version": "0.0.3",
+  "description": "Lightweight library to collect user event data",
   "main": "./dist/kollektor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
